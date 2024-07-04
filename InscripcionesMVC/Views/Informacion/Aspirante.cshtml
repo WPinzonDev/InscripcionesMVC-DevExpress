@@ -1,0 +1,165 @@
+﻿@model Inscripcion
+
+@{
+    ViewData["Title"] = "Aspirante";
+}
+
+<style>
+    .card {
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        background-color: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+    }
+
+    .card-header {
+        background-color: #edf2f7;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .font-medium {
+        font-weight: bold;
+    }
+
+    .card-item {
+        margin-top: 0.5rem;
+    }
+
+    .card-link {
+        margin-left: 20px;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #ff5722;
+        color: white !important;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+        .card-link:hover {
+            background-color: #ff5952;
+        }
+
+    .card-body p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-body h1,
+    .card-body h2,
+    .card-body h3,
+    .card-body h4 {
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .card-body h1 {
+        font-size: 1.8rem;
+    }
+
+    .card-body h2 {
+        font-size: 1.5rem;
+    }
+
+    .card-body h3 {
+        font-size: 1.3rem;
+    }
+
+    .card-body h4 {
+        font-size: 1.2rem;
+    }
+    .card-header {
+        background-color: #edf2f7;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+        font-size: 1.5rem !important;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+</style>
+
+<div class="card">
+    <h1 class="card-header">Detalles</h1>
+    <div class="card-body">
+        <div>
+            <h3 class="font-medium">Tipo de Documento:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.TipoDocumento)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Documento:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.Documento)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Nombre:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.Nombre)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Apellido:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.Apellido)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Fecha de Nacimiento:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.FechaNacimiento)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Ciudad:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.Ciudad)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Dirección:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.Direccion)</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h1 class="card-header">Información de Contacto</h1>
+    <div class="card-body">
+        <div>
+            <h3 class="font-medium">Teléfono:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.Telefono)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Correo Electrónico:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Aspirante.CorreoElectronico)</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h1 class="card-header">Información de Matrícula</h1>
+    <div class="card-body">
+        <div>
+            <h3 class="font-medium">Tipo de Aspirante:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.TipoAspirante.Nombre)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Programa:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.Programa.Nombre)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Fecha de Inscripción:</h3>
+            <p class="card-item">@Html.DisplayFor(model => model.FechaInscripcion)</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Hora de Inscripción:</h3>
+            <p class="card-item">@Model.FechaInscripcion.ToString("HH:mm:ss")</p>
+        </div>
+    </div>
+    <div>
+        <a asp-action="ConsultarAspirante" class="card-link">Consultar otro aspirante</a>
+    </div>
+</div>

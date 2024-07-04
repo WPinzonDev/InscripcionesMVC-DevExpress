@@ -1,0 +1,31 @@
+﻿@using InscripcionesMVC.Models
+@{
+    var tiposDocumento = ViewData["TiposDocumento"] as IEnumerable<dynamic>;
+}
+<form asp-controller="Informacion" asp-action="Aspirante" method="post" class="aspiranteform">
+    @Html.AntiForgeryToken()
+    <h2>Consultar datos de aspirante</h2>
+    @(Html.DevExtreme().Form<InscripcionesMVC.Models.Aspirante>()
+        .ColCount(2)
+        .Items(items =>
+        {
+            items.AddGroup()
+            .ColCount(1)
+            .Items(groupItems =>
+            {
+                groupItems.AddSimpleFor(m => m.TipoDocumento)
+            .Editor(e => e.SelectBox()
+            .DataSource(tiposDocumento)
+            .ValueExpr("Nombre")
+            .DisplayExpr("Nombre"));
+                groupItems.AddSimpleFor(m => m.Documento);
+                groupItems.AddButton()
+            .ButtonOptions(b => b.Text("Consultar")
+            .Type(ButtonType.Default)
+            .Width(120)
+            .UseSubmitBehavior(true));
+            });
+
+        }).FormData(Model)
+        )
+</form>

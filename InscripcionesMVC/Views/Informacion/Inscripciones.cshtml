@@ -1,0 +1,31 @@
+﻿@model IEnumerable<InscripcionesMVC.Models.Inscripcion>
+
+@{
+    ViewData["Title"] = "Inscripciones";
+}
+
+<div class="aspiranteform">
+    <h2>Inscripciones</h2>
+    @(
+            Html.DevExtreme().DataGrid<InscripcionesMVC.Models.Inscripcion>()
+            .DataSource(Model)
+            .KeyExpr("Id")
+            .Columns(columns =>
+            {
+                columns.AddFor(m => m.Aspirante.TipoDocumento).Caption("Tipo de Documento");
+                columns.AddFor(m => m.Aspirante.Documento).Caption("# Documento");
+                columns.AddFor(m => m.Aspirante.Nombre).Caption("Nombres");
+                columns.AddFor(m => m.Aspirante.Apellido).Caption("Apellidos");
+                columns.AddFor(m => m.Aspirante.Ciudad).Caption("Ciudad");
+                columns.AddFor(m => m.TipoAspirante.Nombre).Caption("Tipo de Aspirante");
+                columns.AddFor(m => m.Programa.Nombre).Caption("Programa");
+                columns.AddFor(m => m.FechaInscripcion).Caption("Fecha de Inscripción");
+            })
+        .Paging(p => p.PageSize(10))
+        .Pager(p => p.ShowPageSizeSelector(true).AllowedPageSizes(new[] { 10, 20, 50 }).ShowInfo(true))
+        .FilterRow(f => f.Visible(true))
+        .SearchPanel(s => s.Visible(true).Width(240).Placeholder("Buscar..."))
+        .HeaderFilter(h => h.Visible(true))
+        .GroupPanel(g => g.Visible(true))
+        )
+</div>

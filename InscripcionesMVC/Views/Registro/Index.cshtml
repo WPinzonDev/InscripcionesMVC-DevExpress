@@ -1,0 +1,65 @@
+﻿@using InscripcionesMVC.Models
+@{
+    ViewData["Title"] = "Inscripción Aspirante";
+    var tiposAspirante = ViewData["TiposAspirante"] as IEnumerable<dynamic>;
+    var programas = ViewData["Programas"] as IEnumerable<dynamic>;
+    var tiposDocumento = ViewData["TiposDocumento"] as IEnumerable<dynamic>;
+    var ciudades = ViewData["Ciudades"] as IEnumerable<dynamic>;
+}
+
+<form asp-controller="Registro" asp-action="MatricularAspirante" method="post" class="aspiranteform">
+    @Html.AntiForgeryToken()
+    <h2>Formulario de Inscripción</h2>
+    @(Html.DevExtreme().Form<InscripcionesMVC.Models.Inscripcion>()
+        .ColCount(2)
+        .Items(items =>
+        {
+            items.AddGroup()
+            .ColCount(2)
+            .Items(groupItems =>
+            {
+                groupItems.AddSimpleFor(m => m.Aspirante.TipoDocumento)
+            .Editor(e => e.SelectBox()
+            .DataSource(tiposDocumento)
+            .ValueExpr("Nombre")
+            .DisplayExpr("Nombre"));
+                groupItems.AddSimpleFor(m => m.Aspirante.Documento);
+                groupItems.AddSimpleFor(m => m.Aspirante.Nombre);
+                groupItems.AddSimpleFor(m => m.Aspirante.Apellido);
+                groupItems.AddSimpleFor(m => m.Aspirante.FechaNacimiento);
+                groupItems.AddSimpleFor(m => m.Aspirante.Ciudad)
+            .Editor(e => e.SelectBox()
+            .DataSource(ciudades)
+            .ValueExpr("Nombre")
+            .DisplayExpr("Nombre"));
+                groupItems.AddSimpleFor(m => m.Aspirante.Direccion);
+                groupItems.AddSimpleFor(m => m.Aspirante.Telefono);
+                groupItems.AddSimpleFor(m => m.Aspirante.CorreoElectronico);
+            });
+
+
+            items.AddGroup()
+            .ColCount(2)
+            .Items(groupItems =>
+            {
+                groupItems.AddSimpleFor(m => m.ProgramaId)
+            .Editor(e => e.SelectBox()
+            .DataSource(programas)
+            .ValueExpr("Id")
+            .DisplayExpr("Nombre"));
+                groupItems.AddSimpleFor(m => m.TipoAspiranteId)
+            .Editor(e => e.SelectBox()
+            .DataSource(tiposAspirante)
+            .ValueExpr("Id")
+            .DisplayExpr("Nombre"));
+            });
+
+
+            items.AddButton()
+            .ButtonOptions(b => b.Text("Registrar")
+            .Type(ButtonType.Default)
+            .Width(120)
+            .UseSubmitBehavior(true));
+        }).FormData(Model)
+        )
+</form>
